@@ -1,0 +1,20 @@
+{
+	"name": "frigg",
+	"build": {"dockerfile": "../images/python.Dockerfile", "context": ".."},
+	"service": "frigg",
+	"shutdownAction": "stopCompose",
+
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/bash"
+	},
+
+	"features": {
+		"ghcr.io/nils-geistmann/devcontainers-features/create-remote-user:0": {},
+		"ghcr.io/duduribeiro/devcontainer-features/neovim:1": { "version": "nightly" },
+	},
+	"runArgs": ["--env-file","/home/frenata/.devcontainer.env",
+		"--name", "frigg" ],
+
+	"remoteUser": "${localEnv:USER}",
+	"postCreateCommand": "bash /opt/scripts/post_create.sh",
+}
